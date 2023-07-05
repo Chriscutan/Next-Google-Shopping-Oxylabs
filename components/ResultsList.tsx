@@ -14,12 +14,13 @@ function ResultsList({ results, term }: Props) {
         {/* Each Page */}
         {results.map((pageResult) => (
           <div key={pageResult.job_id} className="space-x-2">
-            {pageResult.content.results.filters?.map((filter, i) => (
+            {pageResult.content.results.filters?.map((filter: any, i: any) => (
               <div key={i} className="border rounded-r-lg md:rounded-lg p-5">
                 <p className="font-bold">{filter.name}</p>
                 <div className="flex flex-col">
                   {filter.values.map((value: any) => (
                     <Link
+                      key={value}
                       prefetch={false}
                       href={`https://www.google.com${value.url}`}
                     >
@@ -51,11 +52,11 @@ function ResultsList({ results, term }: Props) {
               </div>
 
               <h3 className="font-extralight">
-                Showing results for "{decodeURIComponent(term)}"
+                Showing results for - {decodeURIComponent(term)}
               </h3>
             </div>
 
-            {pageResult?.content?.results?.organic?.map((item) => (
+            {pageResult?.content?.results?.organic?.map((item: any) => (
               <Link
                 key={item.pos}
                 href={
